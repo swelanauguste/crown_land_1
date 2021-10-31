@@ -7,6 +7,8 @@ from mixins.assets import DashBoardView
 
 urlpatterns = [
     path("", DashBoardView.as_view(), name="dashboard"),
+    path("employees/", include("employees.urls", namespace="employees")),
+    path("clients/", include("clients.urls", namespace="clients")),
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
 ]

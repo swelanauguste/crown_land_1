@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     # customer apps
     "clients.apps.ClientsConfig",
     "employees.apps.EmployeesConfig",
+    "locations.apps.LocationsConfig",
     # customer apps
 
     "django.contrib.admin",

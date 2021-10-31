@@ -4,5 +4,5 @@ from . import views
 app_name = 'employees'
 
 urlpatterns = [
-    
+    path('update/<slug:slug>', views.EmployeeUpdateView.as_view(), name='employee-update'),
 ]

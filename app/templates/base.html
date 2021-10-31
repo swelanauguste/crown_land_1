@@ -36,12 +36,14 @@ Crown
 </head>
 
 <body class="h-full">
-
-    {% include 'header.html' %}
+<div class="flex">
+    {% include 'sidebar.html' %}
 
     {% block content %}
 
     {% endblock content %}
+</div>
+{% include 'message.html' %}
 
 {% include 'footer.html' %}
 </body>
