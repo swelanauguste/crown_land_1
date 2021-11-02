@@ -37,7 +37,6 @@ INSTALLED_APPS = [
 
     # 3rd_party_apps
     "crispy_forms",
-    "crispy_tailwind",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -149,9 +148,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 SITE_ID = 1
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",

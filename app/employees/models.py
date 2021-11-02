@@ -8,7 +8,7 @@ class User(AbstractUser):
     is_commissioner = models.BooleanField(default=False)
     is_officer = models.BooleanField(default=False)
     is_secretary = models.BooleanField(default=False)
-    is_clerk = models.BooleanField(default=False)
+    is_clerk = models.BooleanField(default=True)
     is_technician = models.BooleanField(default=False)
 
 
@@ -27,6 +27,9 @@ class Employee(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
+        return reverse("employees:employee-detail", kwargs={"slug": self.slug})
+
+    def get_update_url(self):
         return reverse("employees:employee-update", kwargs={"slug": self.slug})
 
     def __str__(self):

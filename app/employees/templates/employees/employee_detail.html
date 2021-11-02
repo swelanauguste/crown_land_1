@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 
 {% block head_title %}
 {{object}} -
 {% endblock head_title %}
 
 
-
 {% block content %}
+
 <div class="container mt-5">
     <h2 class="display-4 border-bottom mb-5">{{object}}</h2>
     <div class="feature col">
         <div class="feature-icon bg-info bg-gradient">
             <i class="bi bi-person"></i>
         </div>
-        <h2>{{object.email|default:""}}</h2>
-        <p>{{object.phone|default:""}}</p>
-        <p>{{object.bio|default:""}}</p>
+        <h2>{{object.user.email|default:"no email"}}</h2>
+        <p>{{object.phone|default:"more about this user"}}</p>
+        <p>{{object.bio|default:"more about this user"}}</p>
         <a href="{{object.get_update_url}}"
             class="icon-link">
             Change info

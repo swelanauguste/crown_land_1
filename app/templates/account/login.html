@@ -8,8 +8,8 @@
 
 {% block content %}
 
-<div class="container mx-auto mt-8 h-screen">
-<h1 class="text-5xl my-3">{% trans "Sign In" %}</h1>
+<div class="container mt-5">
+<h1 class="display-4 border-bottom">{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
 
@@ -31,11 +31,11 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-<p class="my-3">{% blocktrans %}If you have not created an account yet, then please
-<a class="text-blue-500 hover:text-blue-600" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+<p class="my-3 text-center">{% blocktrans %}If you have not created an account yet, then please
+<a class="" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
 
-<form class="w-1/4" method="POST" action="{% url 'account_login' %}">
+<form class="col-lg-4 mx-auto" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
   {{ form|crispy }}
   {% if redirect_field_value %}
@@ -43,7 +43,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   {% endif %}
   <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   <br>
-  <button class="bg-blue-500 border-0 rounded hover:bg-blue-600 px-6 py-2 mt-3 text-white" type="submit">{% trans "Sign In" %}</button>
+  <button class="btn btn-primary mt-3" type="submit">{% trans "Sign In" %}</button>
 </form>
 </div>
 {% endblock %}

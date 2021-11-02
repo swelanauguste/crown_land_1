@@ -2,14 +2,14 @@
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% block head_title %}{% trans "Logout" %}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto mt-8">
-<h1 class="text-5xl">{% trans "Sign Out" %}</h1>
+<div class="container mt-5">
+<h1 class="display-4 border-bottom">{% trans "Logout" %}</h1>
 <br>
 
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+<p>{% trans 'Are you sure you want to logout?' %}</p>
 <br>
 
 <form method="post" action="{% url 'account_logout' %}">
@@ -17,7 +17,7 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
-  <button class="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 rounded mt-3" type="submit">{% trans 'Sign Out' %}</button>
+  <button class="btn btn-warning" type="submit">{% trans 'Sign Out' %}</button>
 </form>
 </div>
 

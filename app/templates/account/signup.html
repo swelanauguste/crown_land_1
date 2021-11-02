@@ -7,18 +7,18 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<div class="container mx-auto mt-8">
-<h1 class="text-5xl my-3">{% trans "Sign Up" %}</h1>
+<div class="container mx-auto mt-5">
+<h1 class="display-4 border-bottom mb-5">{% trans "Sign Up" %}</h1>
 
-<p class="my-3">{% blocktrans %}Already have an account? Then please <a class="text-blue-500 hover:text-blue-600" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<p class="my-3 text-center">{% blocktrans %}Already have an account? Then please <a class="text-blue-500 hover:text-blue-600" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
-<form class="w-1/4" id="signup_form" method="post" action="{% url 'account_signup' %}">
+<form class="col-lg-4 mx-auto" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
   {{ form|crispy }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="px-6 py-2 bg-blue-500 hover:bg-blue-600 rounded" type="submit">{% trans "Sign Up" %}</button>
+  <button class="btn btn-primary mt-3" type="submit">{% trans "Submit" %}</button>
 </form>
 </div>
 {% endblock %}
