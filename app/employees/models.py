@@ -35,4 +35,4 @@ class Employee(models.Model):
     def __str__(self):
         if self.first_name and self.last_name:
             return self.last_name + ", " + self.first_name
-        return self.user
+        return self.user.username

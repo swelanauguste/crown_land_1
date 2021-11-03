@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="display-4 border-bottom mb-5">{{object}}</h2>
+    <h2 class="display-4 border-bottom mb-5">{{object}} {{object.title|default:""}}</h2>
     <div class="feature col">
         <div class="feature-icon bg-info bg-gradient">
             <i class="bi bi-person"></i>
