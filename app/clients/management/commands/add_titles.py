@@ -11,7 +11,7 @@ class Command(BaseCommand):
         parser.add_argument("file_name", type=str)
 
     def handle(self, *args, **kwargs):
-        # Title.objects.all().delete()
+        Title.objects.all().delete()
         file_name = kwargs["file_name"]
         with open(f"{file_name}") as file:
             for row in file:

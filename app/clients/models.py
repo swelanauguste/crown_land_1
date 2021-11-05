@@ -26,20 +26,20 @@ def client_id_image_directory_path(instance, filename):
 
 
 class Client(TimeStampMixin):
-    title = models.ForeignKey("Title", on_delete=models.CASCADE, blank=True, null=True)
+    title = models.ForeignKey("Title", on_delete=models.SET_NULL, blank=True, null=True)
     first_name = models.CharField(max_length=254)
     last_name = models.CharField(max_length=254)
     middle_name = models.CharField(max_length=254, blank=True, null=True)
     slug = models.SlugField(max_length=254, blank=True, unique=True)
     occupation = models.CharField(max_length=254, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True, unique=True)
     phone = models.CharField("Primary tel", max_length=20, null=True)
     phone1 = models.CharField("Mobile tel", max_length=20, blank=True, null=True)
     phone2 = models.CharField("Home tel",max_length=20, blank=True, null=True)
     address = models.CharField(max_length=254, blank=True, null=True)
     address1 = models.CharField(max_length=254, blank=True, null=True)
     district = models.ForeignKey(
-        District, on_delete=models.CASCADE, blank=True, null=True
+        District, on_delete=models.SET_NULL, blank=True, null=True
     )
     nationality = models.CharField(max_length=254, blank=True, null=True)
 
@@ -73,7 +73,7 @@ class ClientIdentification(TimeStampMixin):
         related_name="client_identifications",
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
     )
     FORM_OF_ID = (
         ("National ID", "National ID"),

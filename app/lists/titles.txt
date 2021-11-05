@@ -1,4 +1,4 @@
-Mr
-Mrs
-Mr
-Dr
+Mr.
+Mrs.
+Ms.
+Dr.
