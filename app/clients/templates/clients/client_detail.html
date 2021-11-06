@@ -63,23 +63,24 @@
             <p class="m-0 mb-2">{{object.occupation|default:""}}
             </p>
         </div>
-        <div class="container card" style="max-width: 32rem;">
-            <div class="card-body">
-                <p class="m-0">
-                    {{object.client_identifications.last.form_of_id|default:""}}
-                </p>
-                <p class="m-0">
-                    {{object.client_identifications.last.id_number|default:""}}
-                </p>
-                <p class="m-0">
-                    {% if object.client_identifications.last.id_image %}
+        <div class="container">
+            <p class="m-0">
+                {{object.client_identifications.last.form_of_id|default:""}}
+            </p>
+            <p class="m-0">
+                {{object.client_identifications.last.id_number|default:""}}
+            </p>
+            <p class="m-0">
+                {% if object.client_identifications.last.id_image %}
+                <a target="_blank"
+                    href="{{object.client_identifications.last.id_image.url}}">
                     <img style="max-width: 5rem;"
                         src="{{object.client_identifications.last.id_image.url}}"
                         alt="{{object.client_identifications.last.id_image.url}}">
-                    {% endif %}
+                </a>
+                {% endif %}
 
-                </p>
-            </div>
+            </p>
         </div>
     </div>
 </div>
