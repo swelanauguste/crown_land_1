@@ -8,11 +8,12 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-5 vh-100">
 <h1 class="display-4 border-bottom">{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
-
+<div class="card shadow-lg mt-5 ">
+  <div class="card-body py-5">
 {% if socialaccount_providers %}
 <p class="my-3">{% blocktrans with site.name as site_name %}Please sign in with one
 of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
@@ -45,5 +46,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   <br>
   <button class="btn btn-primary mt-3" type="submit">{% trans "Sign In" %}</button>
 </form>
+</div>
+</div>
 </div>
 {% endblock %}

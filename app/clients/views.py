@@ -5,6 +5,33 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import Client, Title, ClientIdentification
 from .forms import ClientUpdateForm, ClientCreateForm
+from django.db.models import Q
+
+
+
+class ClientSearch(LoginRequiredMixin, ListView):
+    model = Client
+    # template_name = "clients/client_search.html"
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get("q")
+        if query:
+            Clients = Client.objects.filter(
+                Q(first_name__icontains=query)
+                | Q(last_name__icontains=query)
+                | Q(middle_name__icontains=query)
+                | Q(occupation__icontains=query)
+                | Q(phone__icontains=query)
+                | Q(address__icontains=query)
+                | Q(district__name__icontains=query)
+                | Q(nationality__icontains=query)
+            ).distinct()
+            context["object_list"] = Clients
+        else:
+            context["object_list"] = Client.objects.all()
+        return context
 
 
 class ClientIdentificationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -19,7 +46,7 @@ class ClientIdentificationCreateView(LoginRequiredMixin, SuccessMessageMixin, Cr
 
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client
-    paginate_by = 8
+    paginate_by = 10
 
 
 class ClientCreateView(LoginRequiredMixin, SuccessMessageMixin,CreateView):

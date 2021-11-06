@@ -11,31 +11,22 @@ Add Client -
 {% block content %}
 
 <div class="container mt-5">
-    <div class="">
-        <h2 class="display-4">
-            <span class="">
-                Add Client
-            </span>
-
-        </h2>
-        <p class="">
-        <form class="col-lg-4"
-            action=""
-            method="post">
-            {% csrf_token %}
-            {{form|crispy}}
-            </p>
-            <div class="">
-                <div class="">
-                    <button type="submit"
-                        class="btn btn-primary">
-                        Submit
-                    </button>
-        </form>
-
-    </div>
-</div>
-</div>
+    <h2 class="display-4 border-bottom">
+        Add a client
+    </h2>
+    <a title="client list" href="{% url 'clients:client-list' %}">
+        <i class="bi bi-arrow-left-square fs-1 text-dark"></i>
+    </a>
+    <form class="col-lg-4 mt-5"
+        action=""
+        method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit"
+            class="btn btn-outline-dark mt-3 px-5">
+            Submit
+        </button>
+    </form>
 </div>
 
 {% endblock content %}
