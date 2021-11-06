@@ -4,8 +4,9 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from .models import Client, Title, ClientIdentification
-from .forms import ClientUpdateForm, ClientCreateForm
+from .forms import ClientUpdateForm, ClientCreateForm, ClientIdentificationUpdateForm
 from django.db.models import Q
+from django.views.generic.edit import FormMixin
 
 
 
@@ -34,14 +35,32 @@ class ClientSearch(LoginRequiredMixin, ListView):
         return context
 
 
-class ClientIdentificationCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = ClientIdentification
-    fields = ["identification_type", "identification_number"]
+class ClientIdentificationUpdateView(LoginRequiredMixin, SuccessMessageMixin, FormMixin, DetailView):
+    model = Client
+    form_class = ClientIdentificationUpdateForm
     template_name = "clients/client_identification_form.html"
-    success_message = "Created"
+    template_name_suffix = '_update_form'
+    success_message = "Updated"
 
     def get_success_url(self):
-        return reverse("client_detail", kwargs={"slug": self.object.client.slug})
+        return reverse("clients:client-detail", args=(self.object.slug,))
+
+    def get_initial(self):
+        return {"identification": self.get_object()}
+
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.identification = self.object
+        form.save()
+        return super(ClientIdentificationUpdateView, self).form_valid(form)
 
 
 class ClientListView(LoginRequiredMixin, ListView):

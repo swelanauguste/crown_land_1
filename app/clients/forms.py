@@ -1,6 +1,13 @@
 from django import forms
 
-from .models import Client
+from .models import Client, ClientIdentification
+
+
+class ClientIdentificationUpdateForm(forms.ModelForm):
+    class Meta:
+        model = ClientIdentification
+        fields = ("identification", "form_of_id", "id_number", "id_image")
+        widgets = {"identification": forms.HiddenInput()}
 
 
 class ClientUpdateForm(forms.ModelForm):
@@ -16,4 +23,4 @@ class ClientUpdateForm(forms.ModelForm):
 class ClientCreateForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ["first_name", "last_name", 'phone']
+        fields = ["first_name", "last_name", "phone"]

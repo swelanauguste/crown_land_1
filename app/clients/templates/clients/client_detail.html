@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 
 {% block head_title %}
 {{object}} -
@@ -13,43 +15,72 @@
         href="{% url 'clients:client-list' %}">
         <i class="bi bi-arrow-left-square fs-1 text-dark"></i>
     </a>
-    <h2 class="display-4 border-bottom mt-5">{{object.last_name}},
+    <h2 class="display-4 mt-5">{{object.last_name}},
         {{object.title|default:""}} {{object.first_name}} </h2>
-
-    <div class="feature col mt-5">
-        <div class="feature-icon bg-info bg-gradient">
-            <i class="bi bi-person"></i>
-        </div>
-        <h3 class="text-muted">{{object.slug|upper}}</h3>
-        <a class="text-decoration-none text-dark"
-            href="mailto:{{object.email|default:''}}">
-            <h4 class="border-bottom mb-3">
-                {{object.email|default:""}}
-            </h4>
-        </a>
-
-        <a class="text-decoration-none text-dark"
-            href="tel:{{object.phone|default:''}}">
-            <p class="m-0">{{object.phone|default:""}}</p>
-        </a>
-        <a class="text-decoration-none text-dark"
-            href="tel:{{object.phone1|default:''}}">
-            <p class="m-0">{{object.phone1|default:""}}</p>
-        </a>
-        <a class="text-decoration-none text-dark"
-            href="tel:{{object.phone2|default:''}}">
-            <p class="m-0">{{object.phone2|default:""}}</p>
-        </a>
-        <p class="m-0">{{object.address|default:""}}</p>
-        <p class="m-0">{{object.address1|default:""}}</p>
-        <p class="m-0">{{object.district|default:""}}</p>
-        <p class="m-0">{{object.nationality|default:""}}</p>
-        <p class="m-0 border-bottom mb-2">{{object.occupation|default:""}}</p>
+    <div class="d-flex gap-3 border-bottom">
         <a title="update {{object}} info"
             href="{{object.get_update_url}}"
             class="icon-link">
             <i class="bi bi-pencil-square fs-2 text-dark"></i>
         </a>
+        <a title="update {{object}} identification"
+            href="{% url 'clients:client-id-update' object.slug %}"
+            class="icon-link">
+            <i class="bi bi-person-badge fs-2 text-dark"></i>
+        </a>
+    </div>
+
+    <div class="feature col mt-5">
+        <div class="feature-icon bg-info bg-gradient">
+            <i class="bi bi-person"></i>
+        </div>
+        <div class="container">
+            <h3 class="text-muted">{{object.slug|upper}}</h3>
+            <a class="text-decoration-none text-dark"
+                href="mailto:{{object.email|default:''}}">
+                <h4 class="mb-3">
+                    {{object.email|default:""}}
+                </h4>
+            </a>
+        </div>
+        <div class="container">
+            <a class="text-decoration-none text-dark"
+                href="tel:{{object.phone|default:''}}">
+                <p class="m-0">{{object.phone|default:""}}</p>
+            </a>
+            <a class="text-decoration-none text-dark"
+                href="tel:{{object.phone1|default:''}}">
+                <p class="m-0">{{object.phone1|default:""}}</p>
+            </a>
+            <a class="text-decoration-none text-dark"
+                href="tel:{{object.phone2|default:''}}">
+                <p class="m-0">{{object.phone2|default:""}}</p>
+            </a>
+            <p class="m-0">{{object.address|default:""}}</p>
+            <p class="m-0">{{object.address1|default:""}}</p>
+            <p class="m-0">{{object.district|default:""}}</p>
+            <p class="m-0">{{object.nationality|default:""}}</p>
+            <p class="m-0 mb-2">{{object.occupation|default:""}}
+            </p>
+        </div>
+        <div class="container card" style="max-width: 32rem;">
+            <div class="card-body">
+                <p class="m-0">
+                    {{object.client_identifications.last.form_of_id|default:""}}
+                </p>
+                <p class="m-0">
+                    {{object.client_identifications.last.id_number|default:""}}
+                </p>
+                <p class="m-0">
+                    {% if object.client_identifications.last.id_image %}
+                    <img style="max-width: 5rem;"
+                        src="{{object.client_identifications.last.id_image.url}}"
+                        alt="{{object.client_identifications.last.id_image.url}}">
+                    {% endif %}
+
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 

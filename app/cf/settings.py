@@ -24,8 +24,8 @@ INSTALLED_APPS = [
     "clients.apps.ClientsConfig",
     "employees.apps.EmployeesConfig",
     "locations.apps.LocationsConfig",
+    "applications.apps.ApplicationsConfig",
     # customer apps
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -34,14 +34,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django.contrib.sites",
-
     # 3rd_party_apps
     "crispy_forms",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
     # 3rd_party_apps
-
 ]
 
 MIDDLEWARE = [

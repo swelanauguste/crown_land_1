@@ -21,10 +21,6 @@ class Title(TimeStampMixin):
 #         return self.title
 
 
-def client_id_image_directory_path(instance, filename):
-    return "client_id_images/{0}/{1}".format(instance.id_number, filename)
-
-
 class Client(TimeStampMixin):
     title = models.ForeignKey("Title", on_delete=models.SET_NULL, blank=True, null=True)
     first_name = models.CharField(max_length=254)
@@ -35,7 +31,7 @@ class Client(TimeStampMixin):
     email = models.EmailField(blank=True, null=True, unique=True)
     phone = models.CharField("Primary tel", max_length=20, null=True)
     phone1 = models.CharField("Mobile tel", max_length=20, blank=True, null=True)
-    phone2 = models.CharField("Home tel",max_length=20, blank=True, null=True)
+    phone2 = models.CharField("Home tel", max_length=20, blank=True, null=True)
     address = models.CharField(max_length=254, blank=True, null=True)
     address1 = models.CharField(max_length=254, blank=True, null=True)
     district = models.ForeignKey(
@@ -45,7 +41,6 @@ class Client(TimeStampMixin):
 
     class Meta:
         ordering = ["last_name", "first_name"]
-
 
     def get_absolute_url(self):
         return reverse("clients:client-detail", kwargs={"slug": self.slug})
@@ -67,8 +62,12 @@ class Client(TimeStampMixin):
         return self.last_name + ", " + self.first_name
 
 
+def client_id_image_directory_path(instance, filename):
+    return "client_id_images/{0}/{1}".format(instance.id_number, filename)
+
+
 class ClientIdentification(TimeStampMixin):
-    Identification = models.ForeignKey(
+    identification = models.ForeignKey(
         Client,
         related_name="client_identifications",
         blank=True,
@@ -81,8 +80,11 @@ class ClientIdentification(TimeStampMixin):
         ("Driving License", "Driving License"),
     )
     form_of_id = models.CharField(max_length=100, choices=FORM_OF_ID)
-    id_number = models.CharField(max_length=100)
+    id_number = models.CharField(max_length=100, unique=True)
     id_image = models.ImageField(upload_to=client_id_image_directory_path)
+
+    # def get_update_url(self):
+    #     return reverse("clients:client-id-update", kwargs={"id": self.id})
 
     def __str__(self):
         return self.id_number
