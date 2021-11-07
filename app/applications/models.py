@@ -10,5 +10,6 @@
 #     """
 #     An individual application for a land.
 #     """
-#     client =
+#     client = models.ManyToManyField(Client, blank=True)
+
     

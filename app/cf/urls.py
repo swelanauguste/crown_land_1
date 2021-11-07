@@ -3,12 +3,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from mixins.assets import DashBoardView
+from .views import DashBoardView
 
 urlpatterns = [
     path("", DashBoardView.as_view(), name="dashboard"),
     path("employees/", include("employees.urls", namespace="employees")),
     path("clients/", include("clients.urls", namespace="clients")),
+    path("properties/", include("properties.urls", namespace="properties")),
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
 ]

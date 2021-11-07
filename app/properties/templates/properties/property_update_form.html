@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Add Client -
+{% endblock head_title %}
+
+
+
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="display-4 border-bottom">
+        Add a property
+    </h2>
+    <a title="client list" href="{% url 'properties:property-list' %}">
+        <i class="bi bi-arrow-left-square fs-1 text-dark"></i>
+    </a>
+    <form class="col-lg-4 mt-5"
+        action=""
+        method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit"
+            class="btn btn-outline-dark mt-3 px-5">
+            Submit
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

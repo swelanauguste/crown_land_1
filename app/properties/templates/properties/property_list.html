@@ -4,27 +4,26 @@
 
 
 {% block head_title %}
-Clients -
+Properties -
 {% endblock head_title %}
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="display-4 border-bottom">Clients</h2>
+    <h2 class="display-4 border-bottom">Properties</h2>
     <div class="my-3">
-        <a title="add a client"
+        <a title="add a property"
             class="btn btn-outline-dark mt-3 px-5 py-1"
-            href="{% url 'clients:client-create' %}"><i
-                class="bi bi-person-plus fs-5"></i></a>
+            href="{% url 'properties:property-create' %}"><i class="bi bi-plus-lg"></i></a>
     </div>
 
-    <form action="{% url 'clients:client-search' %}"
+    <form action="{% url 'properties:property-search' %}"
         method="get"
         class="my-5 col-lg-4">
         <input type="text"
             name="q"
             class="form-control"
-            placeholder="search clients...">
-        <button title="search client list"
+            placeholder="search properties...">
+        <button title="search properties"
             class="btn btn-outline-dark mt-3 px-5"
             type="submit"><i class="bi bi-search"></i></button>
     </form>
@@ -41,20 +40,13 @@ Clients -
                     <div class="fw-bold">{{o}} ({{o.slug|upper}})</div>
                 </a>
                 <div class="container">
-                    <a title="email {{o}}"
-                        class="text-decoration-none"
-                        href="mailto:{{o.email|default:''}}">
                         <p class="small m-0 p-0 text-muted">
-                            {{o.email|default:""}}
+                            {{o.address|default:""}}
                         </p>
-                    </a>
-                    <a title="call {{o}}"
-                        class="text-decoration-none"
-                        href="tel:{{o.phone|default:''}}">
+                    
                         <p class="small m-0 p-0 text-muted">
-                            {{o.phone|default:""}}
+                            {{o.district|default:""}}
                         </p>
-                    </a>
                 </div>
             </div>
             <!-- <span class="badge bg-primary rounded-pill">14</span> -->

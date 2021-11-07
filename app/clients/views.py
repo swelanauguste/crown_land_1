@@ -19,17 +19,18 @@ class ClientSearch(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get("q")
         if query:
-            Clients = Client.objects.filter(
+            clients = Client.objects.filter(
                 Q(first_name__icontains=query)
                 | Q(last_name__icontains=query)
                 | Q(middle_name__icontains=query)
+                | Q(slug__icontains=query)
                 | Q(occupation__icontains=query)
                 | Q(phone__icontains=query)
                 | Q(address__icontains=query)
                 | Q(district__name__icontains=query)
                 | Q(nationality__icontains=query)
             ).distinct()
-            context["object_list"] = Clients
+            context["object_list"] = clients
         else:
             context["object_list"] = Client.objects.all()
         return context
