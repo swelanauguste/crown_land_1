@@ -1,0 +1,8 @@
+agricultural
+commercial
+industrial
+institutional
+residential
+signage
+touristic
+other (please specify)

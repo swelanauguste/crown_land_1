@@ -12,7 +12,7 @@ from django.views.generic.edit import FormMixin
 
 class ClientSearch(LoginRequiredMixin, ListView):
     model = Client
-    # template_name = "clients/client_search.html"
+    template_name = "clients/client_search.html"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):

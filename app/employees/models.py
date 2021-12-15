@@ -5,15 +5,15 @@ from django.utils.text import slugify
 
 
 class User(AbstractUser):
+    is_clerk = models.BooleanField(default=True)
     is_commissioner = models.BooleanField(default=False)
     is_officer = models.BooleanField(default=False)
     is_secretary = models.BooleanField(default=False)
-    is_clerk = models.BooleanField(default=True)
     is_technician = models.BooleanField(default=False)
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=254)
     last_name = models.CharField(max_length=254)
     middle_name = models.CharField(max_length=254, blank=True)

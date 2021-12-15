@@ -17,11 +17,19 @@ Dashboard -
                     <div class="row gap-5">
                         <div class="col">
                             <h4 class="display-4">{{clients}}</h4>
-                            <p>Clients</p>
+                            <p>
+                                <a class="text-dark"
+                                    href="{% url 'clients:client-list' %}">
+                                    Clients
+                                </a>
+                            </p>
                         </div>
                         <div class="col">
                             <h4 class="display-4">{{properties}}</h4>
-                            <p>Properties</p>
+                            <a class="text-dark"
+                                href="{% url 'properties:property-list' %}">
+                                <p>Properties</p>
+                            </a>
                         </div>
                     </div>
                 </div>

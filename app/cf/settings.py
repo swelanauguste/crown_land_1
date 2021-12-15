@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     "employees.apps.EmployeesConfig",
     "locations.apps.LocationsConfig",
     "properties.apps.PropertiesConfig",
-    # "applications.apps.ApplicationsConfig",
+    "applications.apps.ApplicationsConfig",
     # customer apps
     "django.contrib.admin",
     "django.contrib.auth",
